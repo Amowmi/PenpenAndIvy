@@ -8,9 +8,6 @@ import { PaperProvider } from 'react-native-paper';
 import { Pressable } from 'react-native';
 import GlobalStyle from './utils/GlobalStyle';
 
-import PreviewScreen from './screens/PreviewScreen';
-
-
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,6 +54,7 @@ function App() {
         <PreviewHeader PressHandler={OnSelectPress} Mode={mode}/>
         <ScrollView style={styles.scrollView}>
           <Card Mode={mode}/>
+          <Text style={{flexDirection:'center'}}>Origin</Text>
           <Card Mode={mode}/>
           <Card Mode={mode}/>
           <StatusBar style="auto" />
