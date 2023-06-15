@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         width:'100%',
         height: 121,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     headerPurple: {
         width:'95%',

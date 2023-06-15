@@ -2,15 +2,32 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ScrollView, Button, Modal, TouchableHighlight } from 'react-native';
 import React, { useState } from 'react';
 
-import Card from './components/Card';
-import PreviewHeader from './components/PreviewHeader';
+import Card from '../components/Card';
+import PreviewHeader from '../components/PreviewHeader';
 import { PaperProvider } from 'react-native-paper';
 import { Pressable } from 'react-native';
-import GlobalStyle from './utils/GlobalStyle';
+import GlobalStyle from '../utils/GlobalStyle';
 
 export default function PreviewScreen(){
+  const [isOpen, setIsOpen] = useState(false);
+  const [mode, setMode] = useState('Home');
+  const OnSelectPress = () =>{
+    setIsOpen(!isOpen);
+  }
+  const onOriginalPress = () => {
+    setIsOpen(!isOpen);
+    setMode('Original');
+  };
+  const onHomePress = () => {
+    setIsOpen(!isOpen);
+    setMode('Home');
+  };
+  const onLockPress = () => {
+    setIsOpen(!isOpen);
+    setMode('Lock');
+  };
     return(
-        <View>
+      <View style={{height: '100%'}}>
             <Modal transparent visible={isOpen}  >
         <Pressable  onPress={OnSelectPress} style={styles.modal2}>
           <View style={styles.modal}>
