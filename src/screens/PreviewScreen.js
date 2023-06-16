@@ -8,12 +8,12 @@ import { PaperProvider } from 'react-native-paper';
 import { Pressable } from 'react-native';
 import GlobalStyle from '../utils/GlobalStyle';
 
-export default function PreviewScreen(){
+export default function PreviewScreen({navigation}){
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState('Home');
   const OnSelectPress = () =>{
     setIsOpen(!isOpen);
-  }
+  };
   const onOriginalPress = () => {
     setIsOpen(!isOpen);
     setMode('Original');
@@ -25,6 +25,10 @@ export default function PreviewScreen(){
   const onLockPress = () => {
     setIsOpen(!isOpen);
     setMode('Lock');
+  };
+
+  const navigateHandler = () => {
+    navigation.navigate('EditingScreen');
   };
 
 
@@ -61,6 +65,13 @@ export default function PreviewScreen(){
       <View style={styles.container}>
         <PreviewHeader PressHandler={OnSelectPress} Mode={mode}/>
         <SafeAreaView style={styles.scrollView}>
+          <Pressable
+            onPress={navigateHandler}
+            style={({ pressed }) => ({ backgroundColor: pressed ? '#ddd' : '#0f0' })}
+            ><Text>
+            Go to Edit Screen
+            </Text>
+          </Pressable>
           <FlatList data={CARD} numColumns={2} key={'_'} ListFooterComponent={() => <Button title='ADD'></Button>}
                     renderItem={({item}) => <Card Mode={mode} URL={item.cardURL}/>} />
           
