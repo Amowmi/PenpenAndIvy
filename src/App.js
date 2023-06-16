@@ -66,7 +66,7 @@ function App() {
             component={EditingScreen}
             options={({navigation}) => ({ 
               title: '...', 
-              headerStyle: {height: 70, borderColor: '#fff', paddingRight: 10},
+              headerStyle: {height: 70, borderColor: '#fff'},
               headerLeft: () => (
               <View style={{ marginRight: -10, marginLeft: 3 }}>
                 <Edit_Header  onPress={() => 

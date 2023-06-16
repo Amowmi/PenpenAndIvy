@@ -25,7 +25,7 @@ export default function EditingScreen(){
             
             <Image
               style={styles.imageCard}
-              source={require('../../assets/img/felix1.jpg')}
+              source={require('../../assets/img/IvyPen.png')}
             />
             <View style={styles.toolBar}>
               <Medium_Buttons 
