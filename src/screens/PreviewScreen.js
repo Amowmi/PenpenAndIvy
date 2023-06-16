@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, ScrollView, Button, Modal, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Button, Modal, TouchableHighlight, SafeAreaView, FlatList } from 'react-native';
 import React, { useState } from 'react';
 
 import Card from '../components/Card';
@@ -26,13 +26,24 @@ export default function PreviewScreen(){
     setIsOpen(!isOpen);
     setMode('Lock');
   };
+
+
+  const CARD = [{cardIndex : '0', cardURL : 'https://i.pinimg.com/564x/89/5c/8c/895c8cb5f0c7fa326169d0ce51759b46.jpg'},
+                {cardIndex : '1', cardURL : 'https://i.pinimg.com/564x/bd/45/26/bd452671542fdcee8ae641a7be5c5cb1.jpg'},
+                {cardIndex : '2', cardURL : 'https://i.pinimg.com/564x/f3/6d/6d/f36d6d18240ccae47ad3932c9935ea2d.jpg'},
+                {cardIndex : '3', cardURL : 'https://i.pinimg.com/564x/5c/17/50/5c175030707be929f1bb79d032725da6.jpg'},
+                {cardIndex : '4', cardURL : 'https://i.pinimg.com/564x/f1/50/f6/f150f6e236de0506f009be91f1896013.jpg'},
+                {cardIndex : '5', cardURL : 'https://i.pinimg.com/564x/78/1c/45/781c4575dfd4c2781c3ff4c38d7418a8.jpg'},
+                {cardIndex : '6', cardURL : 'https://i.pinimg.com/564x/83/ee/85/83ee85e48293da7db203cb336a34e061.jpg'},
+                {cardIndex : '7', cardURL : 'https://i.pinimg.com/564x/4b/58/f3/4b58f34182fdabf1e38f660d0ba20498.jpg'}];
+
     return(
       <View style={{height: '100%'}}>
             <Modal transparent visible={isOpen}  >
         <Pressable  onPress={OnSelectPress} style={styles.modal2}>
           <View style={styles.modal}>
               <Text style={[styles.title, GlobalStyle.Primary_Linear_p_font]}>Select Mode</Text>
-              <View style={styles.Madalbutton}>
+              <View style={styles.madalbutton}>
                 <TouchableHighlight onPress={onOriginalPress} style={[styles.button,GlobalStyle.Primary_Linear_p]}>
                   <Text style={styles.buttonfont}>Original</Text>
                 </TouchableHighlight>
@@ -49,12 +60,11 @@ export default function PreviewScreen(){
       </Modal>
       <View style={styles.container}>
         <PreviewHeader PressHandler={OnSelectPress} Mode={mode}/>
-        <ScrollView style={styles.scrollView}>
-          <Card Mode={mode}/>
-          <Card Mode={mode}/>
-          <Card Mode={mode}/>
-          <StatusBar style="auto" />
-        </ScrollView>
+        <SafeAreaView style={styles.scrollView}>
+          <FlatList data={CARD} numColumns={2} key={'_'} ListFooterComponent={() => <Button title='ADD'></Button>}
+                    renderItem={({item}) => <Card Mode={mode} URL={item.cardURL}/>} />
+          
+        </SafeAreaView>
       </View>
         </View>
         
@@ -74,8 +84,9 @@ const styles = StyleSheet.create({
     },
     scrollView: {
       flex: 1,
-      flexDirection: 'column',
-      backgroundColor: '#ffffff',
+      backgroundColor: '#fff',
+      width: '100%',
+      height: '100%'
     },
     modal2:{ // Modal Background
       flex:1,
@@ -105,13 +116,13 @@ const styles = StyleSheet.create({
       margin: 7,
       borderRadius: 20,
     },
-    Madalbutton:{
+    madalbutton:{
       flexDirection: 'row',
       margin:10
     },
     buttonfont: {
       color: '#ffffff'
-    }
+    },
     
   });
   

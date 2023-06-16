@@ -20,7 +20,7 @@ const Card = (props) => {
             </Image>
             <Image
               style={styles.tinyLogo}
-              source={require('../../assets/img/IvyPen.png')}
+              source={{uri: props.URL}}
             />
             <View style={styles.imageDescription}>
               <Text style={[styles.imageDescriptionText, GlobalStyle.Primary_Linear_p_font]}> 2023 / 06 / 14    </Text>
@@ -32,28 +32,7 @@ const Card = (props) => {
             </View>
           </View>
           
-          <View>
-            <Image style={props.Mode=='Lock'? styles.tinyLogoOverlayL : styles.invisible}
-                    source={require('../../assets/img/lock.png')}>
-
-            </Image>
-            <Image style={props.Mode=='Home'? styles.tinyLogoOverlay : styles.invisible}
-                    source={require('../../assets/img/home.png')}>
-
-            </Image>
-            <Image
-              style={styles.tinyLogo}
-              source={require('../../assets/img/IvyPen.png')}
-            />
-            <View style={styles.imageDescription}>
-              <Text style={[styles.imageDescriptionText, GlobalStyle.Primary_Linear_p_font]}> 2023 / 06 / 14    </Text>
-              <View style={styles.imageDescriptionIcon}>
-                <Heart/>
-                <Share/>
-              </View>
-              
-            </View>
-          </View>
+          
         </View>
       </PaperProvider>
     );
@@ -63,7 +42,8 @@ const Card = (props) => {
 const styles = StyleSheet.create({
 
   view: {
-    backgroundColor: '#ffffff',
+    flex: 0.5,
+    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
@@ -72,9 +52,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight:'bold',
     color:'#ffffff'
-  },
-  image: {
-    borderRadius: 3,
   },
   tinyLogo: {
     zIndex: 1,
